@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Orbitron:wght@500&display=swap');
+
+/* Animated gradient background */
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 0.3s ease;
+  background-size: 800% 800%;
+  animation: bgAnimation 15s ease infinite;
+}
+
+@keyframes bgAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Dark and light background gradients */
+body.dark {
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364, #1b2735);
+}
+
+body.light {
+  background: linear-gradient(270deg, #536b83ff, #a4c1deff, #d4fc79, #96e6a1);
+}
+
+/* Glassmorphism calculator container */
+.calculator {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(15px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 330px;
+}
+
+body.light .calculator {
+  background: rgba(232, 223, 223, 0.85);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1em;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+body.light .theme-toggle {
+  color: #333;
+}
+
+/* Digital/LED display font */
+#display {
+  font-family: 'Orbitron', sans-serif;
+  width: 90%;
+  height: 70px;
+  font-size: 2em;
+  text-align: right;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+body.light #display {
+  background: rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+/* Buttons grid */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Button base style */
+.btn {
+  position: relative;
+  overflow: hidden;
+  font-size: 1.4em;
+  padding: 18px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  transition: transform 0.15s ease-in-out, box-shadow 0.25s ease;
+}
+
+/* Ripple effect */
+.btn::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.btn:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 0.3;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.6s ease;
+}
+
+/* Dark mode neon */
+body.dark .btn {
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.3),
+              0 0 20px rgba(0, 255, 200, 0.2);
+}
+
+body.dark .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.6),
+              0 0 25px rgba(0, 255, 200, 0.4);
+}
+
+/* Light mode pastel neon */
+body.light .btn {
+  color: #000;
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 10px rgba(0, 128, 255, 0.25),
+              0 0 20px rgba(0, 128, 255, 0.15);
+}
+
+body.light .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 128, 255, 0.5),
+              0 0 25px rgba(0, 128, 255, 0.3);
+}
+
+/* Press + bounce effect */
+.btn:active {
+  animation: pressBounce 0.2s ease-in-out;
+}
+
+@keyframes pressBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+/* Operator buttons */
+.operator {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #222;
+  font-weight: bold;
+}
+
+body.dark .operator {
+  box-shadow: 0 0 10px rgba(255, 150, 150, 0.4),
+              0 0 20px rgba(255, 150, 150, 0.2);
+}
+
+body.light .operator {
+  box-shadow: 0 0 10px rgba(255, 100, 100, 0.25),
+              0 0 20px rgba(255, 100, 100, 0.15);
+}
+
+/* Equal button with pulsing glow */
+.equal {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  grid-column: span 2;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px rgba(0, 200, 255, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(0, 200, 255, 1); }
+  100% { box-shadow: 0 0 10px rgba(0, 200, 255, 0.6); }
+}
+
+body.light .equal {
+  box-shadow: 0 0 10px rgba(0, 100, 255, 0.3),
+              0 0 20px rgba(0, 100, 255, 0.2);
+}
+
+.zero {
+  grid-column: span 2;
+}
+
+
+/* Ripple animation */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+
+/* Number button ripple - light blue */
+.btn.number .ripple {
+  background: rgba(0, 200, 255, 0.4);
+}
+
+/* Operator button ripple - pink */
+.btn.operator .ripple {
+  background: rgba(255, 100, 150, 0.4);
+}
+
+/* Equal button ripple - cyan glow */
+.btn.equal .ripple {
+  background: rgba(0, 255, 200, 0.5);
+}
+
+
+.btn.number {
+  animation: pulseNumber 4s infinite;
+}
+@keyframes pulseNumber {
+  0% { box-shadow: 0 0 10px rgba(0, 200, 255, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(0, 200, 255, 1); }
+  100% { box-shadow: 0 0 10px rgba(0, 200, 255, 0.6); }
+}
+
+/* Operator buttons glow - pink */
+.btn.operator {
+  animation: pulseOperator 2s infinite;
+}
+@keyframes pulseOperator {
+  0% { box-shadow: 0 0 10px rgba(255, 100, 150, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(255, 100, 150, 1); }
+  100% { box-shadow: 0 0 10px rgba(255, 100, 150, 0.6); }
+}
+
+/* Equal button glow - cyan */
+.btn.equal {
+  animation: pulseEqual 2s infinite;
+}
+@keyframes pulseEqual {
+  0% { box-shadow: 0 0 10px rgba(0, 255, 200, 0.6); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 200, 1); }
+  100% { box-shadow: 0 0 10px rgba(0, 255, 200, 0.6); }
+}
+
+/* History container styling */
+#history {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: white;
+}
+
+body.light #history {
+  color: black;
+}
+
+/* Fade-in animation for new history items */
+.history-item {
+  opacity: 0;
+  transform: translateY(-5px);
+  animation: fadeInHistory 0.4s ease forwards;
+}
+
+@keyframes fadeInHistory {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+#history p {
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+}
+
+#history p:hover {
+  color: #00e6ff;
+  transform: scale(1.03);
+}
+
+.clear-history-btn {
+  background: transparent;
+  border: none;
+  color: #ff5555;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: color 0.2s;
+}
+
+.clear-history-btn:hover {
+  color: red;
+}
+
